@@ -10,3 +10,5 @@ using std::cout;
 using std::cin;
 using std::endl;
 using std::accumulate;
+using std::ostream;
+using std::istream;
