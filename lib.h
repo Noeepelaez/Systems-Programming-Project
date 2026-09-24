@@ -12,3 +12,4 @@ using std::endl;
 using std::accumulate;
 using std::ostream;
 using std::istream;
+using std::setw;

@@ -4,20 +4,24 @@
         Student::Student(){
             cout<<"Input name: "; cin >> name;
             cout<<"Input surname: "; cin >> surname;
-            int n;
-            cout << "Input Semester points";
+            SemPoints.clear();
+            
+            cout << "Input a Semester point";
             while(true){
+                int n;
                 cin >>n;
                 SemPoints.push_back(n);
                 cout<<"want to input another point? yY/nN ";
-                char answ; cin >> answ;
+                char answ;
+                 cin >> answ;
                 if(answ == 'n' || answ == 'N') break;
+                cout << "Input a Semester point";
             }
             cout << "Input final exam point: ";
             cin >> exam;
         }
         
-        Student::Student(string N, string SN, vector<int> SP, int E){
+        Student::Student(string &N, string &SN, vector<int> &SP, int &E){
             name = N;
             surname = SN;
             SemPoints = SP;
@@ -42,35 +46,46 @@
             return *this;
         }
 
-        void Student::print(){
-            cout<<name<<"|"<<surname<<"|";
-            cout <<"[";
-            for(int a : SemPoints) cout <<a<<"|";
-            cout<<"] ";
-            cout<<"|"<<exam<<"\n";
+        void Student::print() const{
+            cout << *this << "\n";
         }
-        
+
         Student::~Student(){
             clear();
         } 
         
-        void Student::clear(){
+         void Student::clear(){
             name.clear();
             surname.clear();
             SemPoints.clear();
             exam = 0;
         }
 
-        double Student:: results(){
-            if(SemPoints.size() == 0) return exam;
-            return 0.4 * accumulate(SemPoints.begin(), SemPoints.end(), 0.0) / (double)SemPoints.size() + 0.6 * exam;
-        }
-
-        ostream& operator << (ostream& out, const Student &A){
-            out << A.name << "|" << A.surname << "|" << A.exam << "|       |" << A.results() << "\n";
+        ostream &operator << (ostream &out, const Student &A) {
+            out << "|" << setw(19) << A.name << "|" << A.surname << "|" << A.exam <<"|      |"<<A.results();
             return out;
         }
 
-        istream& operator >> (istream&, Student &A){
-
+        istream &operator >> (istream &in, Student &A){
+            in >> A.name >> A.surname;
+            int n;
+            cout << "Input a Semester point: ";
+            while (cin >> n){
+                A.SemPoints.push_back(n);   
+            }
+            cin.clear();
+            cin.ignore(100,'\n');
+            return in;
         }
+
+        double Student:: results() const{
+          if(SemPoints.size() == 0) return 0.6 * exam;
+          
+          return 0.4 * accumulate(SemPoints.begin(), SemPoints.end(),0.0) / (double) SemPoints.size() + 0.6 * exam;
+        };
+
+       
+
+
+
+        
