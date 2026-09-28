@@ -13,3 +13,5 @@ using std::accumulate;
 using std::ostream;
 using std::istream;
 using std::setw;
+using std::left;
+using std::right;

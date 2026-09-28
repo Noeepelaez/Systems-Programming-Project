@@ -15,7 +15,7 @@
                 char answ;
                  cin >> answ;
                 if(answ == 'n' || answ == 'N') break;
-                cout << "Input a Semester point";
+                cout << "Input a Semester point: ";
             }
             cout << "Input final exam point: ";
             cin >> exam;
@@ -62,7 +62,7 @@
         }
 
         ostream &operator << (ostream &out, const Student &A) {
-            out << "|" << setw(19) << A.name << "|" << A.surname << "|" << A.exam <<"|      |"<<A.results();
+           out << left << setw(15) << A.name << setw(15) << A.surname << right << setw(15) << A.results();
             return out;
         }
 
