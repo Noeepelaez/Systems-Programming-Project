@@ -8,6 +8,10 @@
         }
 
         Student::Student(){
+           exam = 0;     
+        }
+
+        void Student::readFromConsole(){
             cout<<"Input name: "; cin >> name;
             cout<<"Input surname: "; cin >> surname;
             SemPoints.clear();
@@ -45,12 +49,9 @@
                 cout << "Input final exam point: ";
                 cin >> exam;
             }
-
-            
-            
         }
         
-        Student::Student(string &N, string &SN, vector<int> &SP, int &E){
+        Student::Student(string N, string SN, vector<int> SP, int E){
             name = N;
             surname = SN;
             SemPoints = SP;
@@ -75,8 +76,8 @@
             return *this;
         }
 
-        void Student::print(bool useMedian) const{
-            cout << *this << right << setw(15) << (useMedian ? resultsMedian() : resultsAverage()) << "\n";
+        void Student::print() const{
+            cout << *this << right << setw(15) << resultsAverage() << " | " << left << setw(10) << resultsMedian() << "\n";
         }
 
         Student::~Student(){
@@ -131,6 +132,8 @@
         double Student:: resultsMedian()const{
           return 0.4 * median() + 0.6 * exam;  
         }
+
+
 
        
 

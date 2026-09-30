@@ -11,7 +11,7 @@
         public:
         
         Student();
-        Student(string &N, string &SN, vector<int> &SP, int &E);
+        Student(string N, string SN, vector<int> SP, int E);
         Student(const Student &B);
         Student &operator=(const Student &A);
         ~Student(); 
@@ -19,13 +19,16 @@
 
         friend ostream &operator << (ostream &out, const Student &A);
         friend istream &operator >> (istream &in, Student &A);
-        void print(bool useMedian) const;
+        void print() const;
         
         double average() const;
         double median() const;
         double resultsAverage() const;
         double resultsMedian() const;
 
+        string getName() const {return name;}
+        string getSurname() const {return surname;}
 
+        void readFromConsole();
         
     };   
