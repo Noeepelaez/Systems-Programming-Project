@@ -1,0 +1,11 @@
+Name        Surname    HW1   HW2   HW3   HW4   HW5   Exam
+Ana         Garcia       8     9    10     6    10      9
+Carlos      Lopez        7    10     8     5     4      6
+Beatriz     Perez        9     9     9     9     9      8
+David       Gomez       10     8    10     9    10     10
+Elena       Ruiz         5     6     4     5     6      5
+Fernando    Alonso       8     8     8     8     8      9
+Gabriel     Martin       6     7     6     8     7      7
+Hugo        Diaz         9    10     9    10    10      9
+Ines        Sanz         4     5     5     6     4      5
+Javier      Vargas       7     7     8     8     7      8

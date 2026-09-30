@@ -1,9 +1,11 @@
+#pragma once
 #include "lib.h"
 
 
     class Student {
-        std::string name, surname;
-        std:: vector <int> SemPoints;
+
+        string name, surname;
+        vector <int> SemPoints;
         int exam;
         
         public:
@@ -13,11 +15,20 @@
         Student(const Student &B);
         Student &operator=(const Student &A);
         ~Student(); 
-
-        void print();
         void clear();
-        double results();
-        double results() const;
 
-        friend ostream& operator << (ostream& out, const Student &A);
+        friend ostream &operator << (ostream &out, const Student &A);
+        friend istream &operator >> (istream &in, Student &A);
+        void print() const;
+        
+        double average() const;
+        double median() const;
+        double resultsAverage() const;
+        double resultsMedian() const;
+
+        string getName() const {return name;}
+        string getSurname() const {return surname;}
+
+        void readFromConsole();
+        
     };   
