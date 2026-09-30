@@ -19,7 +19,7 @@
 
         friend ostream &operator << (ostream &out, const Student &A);
         friend istream &operator >> (istream &in, Student &A);
-        void print() const;
+        void print(bool useMedian) const;
         
         double average() const;
         double median() const;

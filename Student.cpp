@@ -2,7 +2,7 @@
 #include "lib.h"
         
         static int randomInt(int from, int to){
-            static mt19937P gen(random_device{}());
+            static mt19937 gen(random_device{}());
             uniform_int_distribution<int> dist(from,to);
             return dist(gen);
         }
@@ -75,8 +75,8 @@
             return *this;
         }
 
-        void Student::print() const{
-            cout << *this << "\n";
+        void Student::print(bool useMedian) const{
+            cout << *this << right << setw(15) << (useMedian ? resultsMedian() : resultsAverage()) << "\n";
         }
 
         Student::~Student(){
@@ -91,7 +91,7 @@
         }
 
         ostream &operator << (ostream &out, const Student &A) {
-           out << left << setw(15) << A.name << setw(15) << A.surname << right << setw(15) << A.resultsAverage();
+           out << left << setw(15) << A.name << setw(15) << A.surname;
             return out;
         }
 

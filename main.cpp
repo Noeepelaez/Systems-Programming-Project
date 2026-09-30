@@ -13,13 +13,20 @@
         A.clear();
     }
     
+
+    cout << "Final Grade: Use (A)verage or (M) as calculation method: ";
+    char method;
+    cin>> method;
+    bool useMedian = 'm' == method || 'M' == method;
+    cout<<"Final Grade calculation using: " << (useMedian ? "MEDIAN" : "AVERAGE") << "\n\n";
+
     cout << left << setw(15) << "Name" 
         << setw(15) << "Surname" 
-        << right << setw(15) << "Final_Point(Aver.)\n";
+        << right << setw(15) << (useMedian ? "Final_Point(Med.)" : "Final_Point(Med.)")<<"\n";
 
     cout << string(45, '-') << "\n";
 
-    for(Student i : Group){
-        i.print();
+    for(const Student& i : Group){
+        i.print(useMedian);
     }      
  }
