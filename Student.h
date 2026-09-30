@@ -21,8 +21,10 @@
         friend istream &operator >> (istream &in, Student &A);
         void print() const;
         
-        double results() const;
-  
+        double average() const;
+        double median() const;
+        double resultsAverage() const;
+        double resultsMedian() const;
 
 
         
