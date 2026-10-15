@@ -1,2 +1,8 @@
-*.o
+build/
+.vs/
+.vscode/
 *.exe
+*.o
+*.csv
+files/students*.txt
+!files/students1000.txt
