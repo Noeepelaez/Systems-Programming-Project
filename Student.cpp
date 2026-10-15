@@ -64,7 +64,7 @@
               for(int point: SP){
                 checkPoint(point);
             }
-            checkPoint(exam);
+            checkPoint(E);
             
             name = N;
             surname = SN;
