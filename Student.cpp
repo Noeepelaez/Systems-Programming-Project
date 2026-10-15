@@ -7,9 +7,16 @@
             return dist(gen);
         }
 
+
+        static void checkPoint(int point){
+            if(point < 0 || point > 10) throw invalid_argument("The point must be between 0 and 10.");
+        }
+
         Student::Student(){
            exam = 0;     
         }
+
+       
 
         void Student::readFromConsole(){
             cout<<"Input name: "; cin >> name;
@@ -38,7 +45,8 @@
                 cout << "Input a Semester point: ";
                 while(true){
                     int n;
-                    cin >>n;
+                    if(!(cin >> n)) throw runtime_error("Invalid input: A number was expected");
+                    checkPoint(n);
                     SemPoints.push_back(n);
                     cout<<"want to input another point? yY/nN ";
                     char answ;
@@ -47,11 +55,17 @@
                     cout << "Input a Semester point: ";
                 }
                 cout << "Input final exam point: ";
-                cin >> exam;
+                if(!(cin >> exam)) throw runtime_error("Invalid input: A number was expected");
+                checkPoint(exam);
             }
         }
         
-        Student::Student(string N, string SN, vector<int> SP, int E){
+        Student::Student(const string &N,const string &SN,const vector<int> &SP, int E){
+              for(int point: SP){
+                checkPoint(point);
+            }
+            checkPoint(exam);
+            
             name = N;
             surname = SN;
             SemPoints = SP;
@@ -77,7 +91,7 @@
         }
 
         void Student::print() const{
-            cout << *this << right << setw(15) << resultsAverage() << " | " << left << setw(10) << resultsMedian() << "\n";
+            cout << *this << right << fixed << setprecision(2) << setw(15) << resultsAverage() << " | " << left << setw(10) << resultsMedian() << "\n";
         }
 
         Student::~Student(){
@@ -122,7 +136,7 @@
 
              if(points.size() % 2 == 1) return points[points.size()/2];
              
-             return (points[points.size() / 2 - 1] + points[points.size() / 2]) / 2;
+             return (points[points.size() / 2 - 1] + points[points.size() / 2]) / 2.0;
         }
 
         double Student:: resultsAverage() const{
@@ -131,6 +145,10 @@
 
         double Student:: resultsMedian()const{
           return 0.4 * median() + 0.6 * exam;  
+        }
+
+        int Student::getPoint(size_t i) const{
+            return SemPoints.at(i);
         }
 
 
