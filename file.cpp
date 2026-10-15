@@ -1,23 +1,23 @@
 #include "file.h"
 
-void readStudentsFromFile(vector<Student>& Group) {
+void readStudentsFromFile(deque<Student>& Group) {
     string filename;
     cout << "Enter filename: ";
     cin >> filename;
     
     string filepath = "files/" + filename;
-    vector<Student> loaded = readStudentsFromPath(filepath);
+    deque<Student> loaded = readStudentsFromPath(filepath);
 
     for(Student &s : loaded) Group.push_back(move(s));
     cout<<"Data loaded succesfully from " <<filepath<< "\n";
 }
 
-vector<Student> readStudentsFromPath(const string &filepath){
+deque<Student> readStudentsFromPath(const string &filepath){
     ifstream file(filepath); 
     
     if (!file) throw ios_base::failure("Cannot open file: " + filepath);
     
-    vector<Student> Group;
+    deque<Student> Group;
     string line;
     getline(file, line);
     
@@ -45,7 +45,7 @@ vector<Student> readStudentsFromPath(const string &filepath){
     return Group;
 }
 
-void exportCSV(const string& filepath, const vector<Student>& Group) {
+void exportCSV(const string& filepath, const deque<Student>& Group) {
     ofstream fout(filepath);
     if (!fout) throw ios_base::failure("Cannot create file: " + filepath);
 
@@ -58,7 +58,7 @@ void exportCSV(const string& filepath, const vector<Student>& Group) {
     if (!fout) throw ios_base::failure("Error while writing file: " + filepath);
 }
 
-void writeStudentsToFile(const string& filepath, const vector<Student> &Group) {
+void writeStudentsToFile(const string& filepath, const deque<Student> &Group) {
     ofstream fout(filepath);
     if (!fout) throw runtime_error("Cannot create file: " + filepath);
 

@@ -7,7 +7,7 @@
 
  int main(){
     try{
-        vector <Student> Group;
+         deque<Student> Group;
 
         int choice;
         cout << "Choose input method:\n";

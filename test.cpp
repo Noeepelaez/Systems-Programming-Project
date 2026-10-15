@@ -24,7 +24,7 @@ void Test::benchmark(size_t n) {
 
     Timer total, t;
 
-    vector<Student> all = readStudentsFromPath(path);            
+    deque<Student> all = readStudentsFromPath(path);            
     double tRead = t.elapsed();
 
     t.reset();
@@ -32,7 +32,7 @@ void Test::benchmark(size_t n) {
     double tSort = t.elapsed();
 
     t.reset();
-    vector<Student> passed, failed;
+    deque<Student> passed, failed;
     splitStudents(all, passed, failed);
     double tSplit = t.elapsed();
 
@@ -56,7 +56,7 @@ void Test::benchmark(size_t n) {
     bool newFile = !ifstream(csvName).good();
     ofstream csv(csvName, std::ios::app);
     if (newFile) csv << "container,records,read_s,sort_s,split_s,write_s,total_s\n";
-    csv << "vector" << ',' << n << ',' << tRead << ',' << tSort << ','
+    csv << "deque" << ',' << n << ',' << tRead << ',' << tSort << ','
         << tSplit << ',' << tWrite << ',' << tTotal << '\n';
 }
 
