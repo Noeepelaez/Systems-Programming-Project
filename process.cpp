@@ -7,11 +7,11 @@ static bool byName(const Student& a, const Student& b) {
     return a.getName() < b.getName();
 }
 
-void sortStudents(vector<Student>& Group) {
-    sort(Group.begin(), Group.end(), byName);
+void sortStudents(list<Student>& Group) {
+    Group.sort(byName);
 }
 
-void splitStudents(vector<Student> &all, vector<Student> &passed, vector<Student> &failed) {
+void splitStudents(list<Student> &all, list<Student> &passed, list<Student> &failed) {
     for (Student &s : all) {
         bool ok = s.resultsAverage() >= PASS_MARK;     
         (ok ? passed : failed).push_back(move(s));

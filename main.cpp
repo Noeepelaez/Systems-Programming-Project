@@ -7,7 +7,7 @@
 
  int main(){
     try{
-        vector <Student> Group;
+         list<Student> Group;
 
         int choice;
         cout << "Choose input method:\n";
