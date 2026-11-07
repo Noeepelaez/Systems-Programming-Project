@@ -1,8 +1,18 @@
-build/
+# IDE files
 .vs/
 .vscode/
+.idea/
+
+# Build output
+build/
 *.exe
 *.o
+students_vector
+students_list
+students_deque
+
+# Generated data and results (the big files are created with menu option 3)
 *.csv
+!results/*.csv
 files/students*.txt
 !files/students1000.txt

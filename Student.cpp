@@ -1,6 +1,6 @@
 #include "Student.h"
 #include "lib.h"
-        
+
         static int randomInt(int from, int to){
             static mt19937 gen(random_device{}());
             uniform_int_distribution<int> dist(from,to);
@@ -13,10 +13,10 @@
         }
 
         Student::Student(){
-           exam = 0;     
+           exam = 0;
         }
 
-       
+
 
         void Student::readFromConsole(){
             cout<<"Input name: "; cin >> name;
@@ -59,13 +59,13 @@
                 checkPoint(exam);
             }
         }
-        
+
         Student::Student(const string &N,const string &SN,const vector<int> &SP, int E){
               for(int point: SP){
                 checkPoint(point);
             }
-            checkPoint(exam);
-            
+            checkPoint(E);         
+
             name = N;
             surname = SN;
             SemPoints = SP;
@@ -86,7 +86,25 @@
                 surname = A.surname;
                 SemPoints = A.SemPoints;
                 exam = A.exam;
-            } 
+            }
+            return *this;
+        }
+
+        Student::Student(Student &&B) noexcept
+            : name(move(B.name)), surname(move(B.surname)),
+              SemPoints(move(B.SemPoints)), exam(B.exam){
+            B.exam = 0;
+        }
+
+        Student &Student::operator=(Student &&A) noexcept
+        {
+            if (this != &A){
+                name = move(A.name);
+                surname = move(A.surname);
+                SemPoints = move(A.SemPoints);
+                exam = A.exam;
+                A.exam = 0;
+            }
             return *this;
         }
 
@@ -97,7 +115,7 @@
         Student::~Student(){
             clear();
         }
-        
+
          void Student::clear(){
             name.clear();
             surname.clear();
@@ -115,7 +133,7 @@
             int n;
             cout << "Input a Semester point: ";
             while (cin >> n){
-                A.SemPoints.push_back(n);   
+                A.SemPoints.push_back(n);
             }
             cin.clear();
             cin.ignore(100,'\n');
@@ -135,7 +153,7 @@
              sort(points.begin(),points.end());
 
              if(points.size() % 2 == 1) return points[points.size()/2];
-             
+
              return (points[points.size() / 2 - 1] + points[points.size() / 2]) / 2.0;
         }
 
@@ -144,17 +162,9 @@
         };
 
         double Student:: resultsMedian()const{
-          return 0.4 * median() + 0.6 * exam;  
+          return 0.4 * median() + 0.6 * exam;
         }
 
         int Student::getPoint(size_t i) const{
             return SemPoints.at(i);
         }
-
-
-
-       
-
-
-
-        

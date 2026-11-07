@@ -3,18 +3,28 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <list>
+#include <deque>
 #include <iomanip>
 #include <numeric>
 #include <random>
 #include <algorithm>
+#include <iterator>
+#include <type_traits>
+#include <utility>
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
+#include <system_error>
+#include <exception>
+#include <new>
 #include <ios>
 #include <chrono>
 
-using std:: string;
-using std:: vector;
+using std::string;
+using std::vector;
+using std::list;
+using std::deque;
 using std::cout;
 using std::cin;
 using std::endl;
@@ -26,8 +36,8 @@ using std::left;
 using std::right;
 using std::mt19937;
 using std::random_device;
-using std:: uniform_int_distribution;
-using std:: sort;
+using std::uniform_int_distribution;
+using std::sort;
 using std::ifstream;
 using std::istringstream;
 using std::invalid_argument;
@@ -39,3 +49,12 @@ using std::move;
 using std::ios_base;
 using std::cerr;
 using std::to_string;
+
+using std::back_inserter;
+using std::make_move_iterator;
+using std::copy_if;
+using std::remove_copy_if;
+using std::partition;
+using std::stable_partition;
+using std::find_if;
+using std::is_same_v;
