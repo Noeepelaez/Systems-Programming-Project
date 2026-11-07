@@ -19,8 +19,8 @@ Container readStudentsFromPath(const string &filepath){
 
     Container Group;
     string line, n, sn;
-    istringstream iss;              // v1.0: created once and reused for every line
-    vector<int> sp;                 // v1.0: same buffer reused for every line
+    istringstream iss;             
+    vector<int> sp;                 
     getline(file, line);
 
     while (getline(file, line)) {
@@ -40,7 +40,7 @@ Container readStudentsFromPath(const string &filepath){
             int examGrade = sp.back();
             sp.pop_back();
 
-            Group.emplace_back(n, sn, sp, examGrade);   // v1.0: built in place, no extra copy
+            Group.emplace_back(n, sn, sp, examGrade); 
         }
     }
     return Group;

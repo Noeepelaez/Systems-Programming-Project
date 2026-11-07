@@ -23,7 +23,7 @@ const char *strategyName(Strategy s) {
     return "?";
 }
 
-// std::sort needs random access; std::list brings its own sort().
+
 template <class C>
 static void sortAny(C &Group) {
     if constexpr (is_same_v<C, list<Student>>) Group.sort(byName);
@@ -34,23 +34,18 @@ void sortStudents(Container &Group) {
     sortAny(Group);
 }
 
-// ---------------------------------------------------------------- Strategy 1
-// Original loop, but copying: "all" keeps everybody.
+
 static void splitCopy(const Container &all, Container &passed, Container &failed) {
     for (const Student &s : all) {
         (isPassed(s) ? passed : failed).push_back(s);
     }
 }
 
-// Same with <algorithm>: remove_copy_if copies everything that is NOT failed (= passed).
 static void splitCopyAlgo(const Container &all, Container &passed, Container &failed) {
     remove_copy_if(all.begin(), all.end(), back_inserter(passed), isFailed);
     copy_if(all.begin(), all.end(), back_inserter(failed), isFailed);
 }
 
-// ---------------------------------------------------------------- Strategy 2
-// Failed students are moved out of "all" and erased one by one.
-// vector / deque have to shift every following element on each erase.
 static void splitMove(Container &all, Container &failed) {
     for (auto it = all.begin(); it != all.end(); ) {
         if (isFailed(*it)) {
@@ -62,8 +57,6 @@ static void splitMove(Container &all, Container &failed) {
     }
 }
 
-// After a partition the failed students are the tail [mid, end).
-// They are moved to "failed" and the tail is cut off ONCE.
 template <class C>
 static void moveTail(C &all, typename C::iterator mid, C &failed) {
     if constexpr (is_same_v<C, list<Student>>) {
@@ -74,21 +67,16 @@ static void moveTail(C &all, typename C::iterator mid, C &failed) {
     }
 }
 
-// stable_partition keeps the (already sorted) order inside both groups.
 static void splitMoveAlgo(Container &all, Container &failed) {
     auto mid = stable_partition(all.begin(), all.end(), isPassed);
     moveTail(all, mid, failed);
 }
 
-// partition is cheaper (no buffer, no order) - the groups are sorted afterwards.
 static void splitPartition(Container &all, Container &failed) {
     auto mid = partition(all.begin(), all.end(), isPassed);
     moveTail(all, mid, failed);
 }
 
-// std::list only: find_if finds the next failed student and splice relinks that node
-// into "failed" - no student is copied or moved, and nothing is shifted.
-// (Other containers have no splice, so this strategy is not available for them.)
 template <class C>
 static void findIfSplice(C &all, C &failed) {
     if constexpr (is_same_v<C, list<Student>>) {
@@ -99,7 +87,7 @@ static void findIfSplice(C &all, C &failed) {
             it = following;
         }
     } else {
-        splitMoveAlgo(all, failed);     // not used: Test skips this strategy for them
+        splitMoveAlgo(all, failed);    
     }
 }
 

@@ -64,7 +64,7 @@
               for(int point: SP){
                 checkPoint(point);
             }
-            checkPoint(E);          // v1.0 fix: it used to check the (still unset) member "exam"
+            checkPoint(E);         
 
             name = N;
             surname = SN;
@@ -90,9 +90,6 @@
             return *this;
         }
 
-        // v1.0: move operations steal the internals instead of copying them.
-        // Without them, every "move(student)" in the split strategies was a full copy,
-        // because declaring a destructor stops the compiler from generating them.
         Student::Student(Student &&B) noexcept
             : name(move(B.name)), surname(move(B.surname)),
               SemPoints(move(B.SemPoints)), exam(B.exam){

@@ -5,7 +5,7 @@
 
 constexpr double PASS_MARK = 5.0;
 
-// Ways of splitting the students into "passed" and "failed" (v1.0).
+// Ways of splitting the students into "passed" and "failed".
 //   Copy          : Strategy 1 - two new containers, students are COPIED, "all" is kept.
 //   Move          : Strategy 2 - one new container (failed); failed students are moved out
 //                   and erased from "all" one by one, so "all" ends up holding the passed.
@@ -21,6 +21,4 @@ const char *strategyName(Strategy s);
 
 void sortStudents(Container &Group);
 
-// "passed" and "failed" must be empty. After the call both hold their group.
-// Copy strategies leave "all" untouched; Move strategies leave it empty.
 void splitStudents(Strategy s, Container &all, Container &passed, Container &failed);

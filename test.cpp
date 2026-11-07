@@ -7,8 +7,6 @@
 
 static const vector<size_t> SIZES = {1000, 10000, 100000, 1000000, 10000000};
 
-// Strategy 2 written as "erase every failed student" is O(n^2) for vector and deque.
-// Above this size it is skipped for them (it would take hours); list has no such problem.
 static const size_t NAIVE_ERASE_LIMIT = 100000;
 
 // Peak memory of the whole process in MB (Linux only; -1 when it cannot be read).
@@ -60,7 +58,6 @@ void Test::benchmark(size_t n, Strategy s) {
     Container all = readStudentsFromPath(path);
     double tRead = t.elapsed();
 
-    // Strategy "partition+sort" sorts AFTER splitting (two smaller sorts).
     bool sortAfter = (s == Strategy::PartitionSort);
 
     double tSort = 0;

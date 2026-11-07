@@ -50,7 +50,6 @@ using std::ios_base;
 using std::cerr;
 using std::to_string;
 
-// <algorithm> / <iterator> tools used by the optimised split strategies
 using std::back_inserter;
 using std::make_move_iterator;
 using std::copy_if;

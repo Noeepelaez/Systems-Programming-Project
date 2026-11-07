@@ -14,8 +14,8 @@
         Student(const string &N,const string &SN,const vector<int> &SP, int E);
         Student(const Student &B);
         Student &operator=(const Student &A);
-        Student(Student &&B) noexcept;              // v1.0: move constructor
-        Student &operator=(Student &&A) noexcept;   // v1.0: move assignment
+        Student(Student &&B) noexcept;              
+        Student &operator=(Student &&A) noexcept;   
         ~Student();
         void clear();
 
@@ -28,8 +28,6 @@
         double resultsAverage() const;
         double resultsMedian() const;
 
-        // v1.0: return a const reference (no string copy). The sort comparator calls
-        // these several times per comparison, i.e. millions of times.
         const string &getName() const {return name;}
         const string &getSurname() const {return surname;}
         size_t getSemPointsCount() const {return SemPoints.size();}
