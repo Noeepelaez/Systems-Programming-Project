@@ -1,16 +1,17 @@
 #pragma once
 #include "lib.h"
+#include "process.h"
 
 class Test{
-    public: 
+    public:
 
     static void generateFiles();
-    static void benchmark(size_t n );
-    static void benchmarkAll();
+    static void benchmark(size_t n, Strategy s);
+    static void benchmarkAll(Strategy s);
 
 
 private:
-    
+
     class Timer{
         std::chrono::steady_clock::time_point start;
         public:
